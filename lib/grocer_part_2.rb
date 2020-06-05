@@ -39,6 +39,6 @@ i=0
 end
 
 def checkout(cart, coupons)
-original_prices = consolidate_cart(cart)
+consolidate_cart(cart)
 
 end
