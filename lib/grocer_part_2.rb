@@ -1,9 +1,30 @@
+require 'pry'
 require_relative './part_1_solution.rb'
 
 def apply_coupons(cart, coupons)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This method **should** update cart
+ i = 0
+  while i < coupons.length do
+    couponed_item = find_item_by_name_in_collection(coupons[i][:item],cart)
+    item_name = "#{coupons[i][:item]} W/COUPON"
+    item_with_coupon = find_item_by_name_in_collection(item_name,cart)
+    if couponed_item && couponed_item[:count] >= coupons[i][:num]
+      if item_with_coupon
+        item_with_coupon[:count] += coupons[i][:num]
+        couponed_item[:count] -= coupons[i][:num]
+      else
+      couponed_item = {
+        :item => item_name
+        :price => coupons[i][:cost]/coupons[i][:num],
+        :clearance => cart[i][:clearance],
+        :count => coupons[i][:num],
+        
+      }
+      cart << couponed_item
+      end
+    end
+i +=1
+end
+cart
 end
 
 def apply_clearance(cart)
