@@ -40,7 +40,5 @@ end
 
 def checkout(cart, coupons)
 original_prices = consolidate_cart(cart)
-first_discounts = apply_coupons(original_prices,coupons)
-second_discounts = apply_clearance(first_discounts)
-  
+
 end
